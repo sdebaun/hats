@@ -1,0 +1,22 @@
+{
+  "name": "hats",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sdebaun/hats.git",
+  "author": "Stephen DeBaun <sdebaun74@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "eventemitter2": "^6.4.9",
+    "fp-ts": "^2.16.1",
+    "io-ts": "^2.2.21",
+    "mqtt": "^5.3.4",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2",
+    "ws": "^8.15.1"
+  },
+  "devDependencies": {
+    "@types/eventemitter2": "^4.1.0",
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.3.3"
+  }
+}
