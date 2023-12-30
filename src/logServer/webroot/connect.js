@@ -3,10 +3,7 @@ const connect = (url, log, rcv) => () => {
 
     ws.onmessage = msg => rcv(msg.data)
 
-    ws.onopen = () => {
-        log('connected')
-        setTimeout(() => ws.send('client connected'), 1000)
-    }
+    ws.onopen = () => log('connected')
     ws.onerror = () => log('error')
     ws.onclose = () => {
         log('closed, reconnecting')

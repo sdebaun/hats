@@ -25,6 +25,7 @@
     "@types/express-ws": "^3.0.4",
     "@types/livereload": "^0.9.5",
     "@types/ws": "^8.5.10",
+    "fp-ts-std": "^0.18.0",
     "typescript": "^5.3.3"
   }
 }

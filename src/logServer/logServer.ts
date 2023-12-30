@@ -27,6 +27,26 @@ ee.onAny(log)
 const createLiveReload = (url: string) =>
     liveReload.createServer().watch(url) // doesnt lr with ./webroot ???
 
+const makeEmit = (ee: EventEmitter2) =>
+    (type: string, ...msg: any[]) =>
+        ee.emit(type, ...msg)
+
+const Msg = (ee: EventEmitter2) => {
+    const em = makeEmit(ee)
+
+    return {
+        ws: {
+            cli: {
+                connected: (r: Request) =>
+                    em(
+                        'ws.cli.connected',
+                        { url: r.url, headers: r.headers }
+                    )
+            }
+        }
+    }
+}
+const msg = Msg(ee)
 
 export const expressServer = ({ port, ee }: LogServerOptions) => {
     createLiveReload('./')
@@ -37,13 +57,11 @@ export const expressServer = ({ port, ee }: LogServerOptions) => {
 
     app.use(express.static(path.join(__dirname, '/webroot')))
     
-    app.ws('/wss/log', (ws, req, next) => {
-    // app.ws('/wss/log', (ws, req) => {
-            // just tries to log request, and listen for msgs
-        ee.emit('ws.request', req)
-        console.log('ws /log hit')
-        ws.on('message', msg => ee.emit('cli.message', msg))
-        next()
+    app.ws('/wss/log', (ws, req) => {
+        msg.ws.cli.connected(req)
+        ws.send('welcome')
+        console.log('/wss/log hit')
+        ws.on('message', msg => ee.emit('ws.cli.message', msg))
     })
     
     app.listen(port)
