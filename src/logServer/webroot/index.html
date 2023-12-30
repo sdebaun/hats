@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/events@3.3.0/events.min.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/nodejs-events@1.0.9/Events.min.js"></script> -->
+        <script src="connect.js" lang="javascript"></script>
+        <script lang="javascript">
+            const log = (arg) => console.log('local.ws:', arg)
+
+            log('web app started!!')
+
+            var rcv = log
+            connect('ws://localhost:3000/wss/log', log, rcv)()
+        </script>
+    </head>
+    <body>
+        <h1>HATS Logs!</h1>
+        <div id="log-lines"></div>
+    </body>
+</html>
