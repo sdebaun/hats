@@ -5,6 +5,10 @@
   "repository": "https://github.com/sdebaun/hats.git",
   "author": "Stephen DeBaun <sdebaun74@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "ls": "nodemon ./src/logServer/logServer.ts",
+    "wsc": "nodemon ./src/wsClient.ts"
+  },
   "dependencies": {
     "connect-livereload": "^0.6.1",
     "eventemitter2": "^6.4.9",

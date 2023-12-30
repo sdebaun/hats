@@ -31,7 +31,7 @@ const makeEmit = (ee: EventEmitter2) =>
     (type: string, ...msg: any[]) =>
         ee.emit(type, ...msg)
 
-const Msg = (ee: EventEmitter2) => {
+const makeMsg = (ee: EventEmitter2) => {
     const em = makeEmit(ee)
 
     return {
@@ -46,7 +46,7 @@ const Msg = (ee: EventEmitter2) => {
         }
     }
 }
-const msg = Msg(ee)
+const msg = makeMsg(ee)
 
 export const expressServer = ({ port, ee }: LogServerOptions) => {
     createLiveReload('./')
