@@ -14,7 +14,7 @@ const client = mqtt.connect(url, {
 
 client.on('connect', (packet) => {
     console.log('connected', packet.toString())
-    client.subscribe('#')
+    client.subscribe('#') // mqtt wildcard
 })
 
 client.on('message', (topic, message) => {
